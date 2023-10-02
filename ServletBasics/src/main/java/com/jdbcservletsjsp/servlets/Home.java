@@ -8,7 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/")
+@WebServlet("/home")
 public class Home extends GenericServlet {
 
     private static final long serialVersionUID = 5106198083959735070L;
