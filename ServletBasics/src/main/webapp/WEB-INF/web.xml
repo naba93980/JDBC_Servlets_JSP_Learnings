@@ -20,6 +20,16 @@
 		<servlet-name>HelloWorld</servlet-name>
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Addition</servlet-name>
+		<servlet-class>com.jdbcservletsjsp.servlets.AdditionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Addition</servlet-name>
+		<url-pattern>/addition</url-pattern>
+	</servlet-mapping>
+	
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>ServletsBasics</web-resource-name>
