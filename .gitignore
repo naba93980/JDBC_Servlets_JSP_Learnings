@@ -1,1 +1,4 @@
 Resources/
+build/
+.settings/
+*/.gitignore
