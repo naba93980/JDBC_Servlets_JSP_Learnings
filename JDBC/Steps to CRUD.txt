@@ -1,0 +1,5 @@
+1. Establish the connection
+2. Create the statement object
+3. Submit the SQL query to DBMS
+4. Close the statement
+5. Close the conection
