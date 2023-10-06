@@ -3,13 +3,28 @@ package com.jdbcservletsjsp.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class AccountDAO {
 
+    private static int numberOfRowsAffected;
+
     public static void main(String[] args) {
 	try {
-	    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb");
+	    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "12345678");
 	    System.out.println(connection);
+
+	    // Statement interface is used for DML
+	    Statement statement = connection.createStatement();
+
+//	    numberOfRowsAffected = statement.executeUpdate("INSERT INTO account VALUES(1,'nabajyoti','modak',1000)");
+
+//	    numberOfRowsAffected = statement.executeUpdate("UPDATE account SET bal=5000 WHERE accno=1");
+
+	    numberOfRowsAffected = statement.executeUpdate("DELETE FROM account WHERE accno=1");
+
+	    System.out.println(numberOfRowsAffected);
+
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
