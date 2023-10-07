@@ -2,33 +2,40 @@ package com.jdbcservletsjsp.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AccountDAO {
 
-    private static int numberOfRowsAffected;
+	private static int numberOfRowsAffected;
 
-    public static void main(String[] args) {
-	try {
-	    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "12345678");
-	    System.out.println(connection);
+	public static void main(String[] args) {
+		try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "12345678");
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM account");) {
 
-	    // Statement interface is used for DML
-	    Statement statement = connection.createStatement();
+			System.out.println(connection);
 
-//	    numberOfRowsAffected = statement.executeUpdate("INSERT INTO account VALUES(1,'nabajyoti','modak',1000)");
+			// numberOfRowsAffected = statement.executeUpdate("INSERT INTO account
+			// VALUES(1,'nabajyoti','modak',1000)");
 
-//	    numberOfRowsAffected = statement.executeUpdate("UPDATE account SET bal=5000 WHERE accno=1");
+			// numberOfRowsAffected = statement.executeUpdate("UPDATE account SET
+			// lastname='Papai' WHERE accno=2");
 
-	    numberOfRowsAffected = statement.executeUpdate("DELETE FROM account WHERE accno=1");
+			// numberOfRowsAffected = statement.executeUpdate("DELETE FROM account WHERE
+			// accno=1");
 
-	    System.out.println(numberOfRowsAffected);
+			// System.out.println(numberOfRowsAffected);
 
-	} catch (SQLException e) {
-	    e.printStackTrace();
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString(2) + resultSet.getString(3) + resultSet.getInt(4));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-    }
 }
 
 /*
