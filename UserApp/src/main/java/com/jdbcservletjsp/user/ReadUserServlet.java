@@ -7,24 +7,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/readServlet")
 public class ReadUserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 165767567568756L;
 	private Connection connection;
 
-	public void init() {
+	public void init(ServletConfig config) {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12651395",
-					"sql12651395", "XxyXyvgUZq");
+			String url = config.getInitParameter("dbUrl");
+			String user = config.getInitParameter("dbUser");
+			String password = config.getInitParameter("dbPassword");
+			connection = DriverManager.getConnection(url, user, password);
 			System.out.println(connection);
 		} catch (SQLException e) {
 			e.printStackTrace();
