@@ -3,3 +3,5 @@
 3. Submit the SQL query to DBMS
 4. Close the statement
 5. Close the conection
+
+// remote mysql url - jdbc:mysql://sql12.freesqldatabase.com:3306/sql12651395
