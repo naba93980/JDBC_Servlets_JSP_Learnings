@@ -31,7 +31,7 @@ public class ProductServlet extends HttpServlet {
 
 		try {
 			Class.forName(driver);
-			connection = DriverManager.getConnection(dbUrl);
+			connection = DriverManager.getConnection(dbUrl, "root", "12345678");
 			preparedStatement = connection.prepareStatement("INSERT INTO product VALUES (?,?,?,?)");
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -40,6 +40,24 @@ public class ProductServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		int id = Integer.parseInt(req.getParameter("id"));
+		String name = req.getParameter("name");
+		int result;
+
+		try {
+			preparedStatement.setInt(1, id);
+			preparedStatement.setString(2, name);
+			preparedStatement.setString(3, req.getParameter("description"));
+			preparedStatement.setString(4, req.getParameter("price"));
+			result = preparedStatement.executeUpdate();
+
+			resp.setContentType("text/plain");
+			resp.getWriter().write("result = " + result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override
