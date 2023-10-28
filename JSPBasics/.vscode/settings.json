@@ -1,0 +1,6 @@
+{
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.project.referencedLibraries": [
+       "G:\\Users\\NABAJYOTI\\JDBC_Servlets_JSP\\JSPBasics\\src\\main\\webapp\\WEB-INF\\lib\\mysql-connector-j-8.0.33.jar"
+    ]
+}
